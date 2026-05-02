@@ -148,7 +148,7 @@ export default function CTASection() {
   return (
     <section
       id="download"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden py-28 sm:py-32"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden py-24 sm:py-28 md:py-32"
     >
       {/* Orb canvas */}
       <div className="pointer-events-none absolute inset-0 -z-10">

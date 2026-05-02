@@ -58,7 +58,7 @@ function MagneticCard({
           rotateY,
           transformStyle: "preserve-3d",
         }}
-        className="relative h-full overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-7 backdrop-blur-md transition-[border-color,box-shadow,background] duration-500 group-hover:border-[#8B5CF6]/50 group-hover:bg-white/[0.04] group-hover:shadow-[0_0_60px_rgba(139,92,246,0.18)] sm:p-8"
+        className="relative h-full overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-md transition-[border-color,box-shadow,background] duration-500 group-hover:border-[#8B5CF6]/50 group-hover:bg-white/[0.04] group-hover:shadow-[0_0_60px_rgba(139,92,246,0.18)] sm:p-7 md:p-8"
       >
         {/* Corner gradient accent */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#8B5CF6]/10 blur-3xl transition-opacity duration-500 group-hover:bg-[#A78BFA]/25" />

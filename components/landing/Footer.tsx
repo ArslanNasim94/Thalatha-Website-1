@@ -114,7 +114,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-xs text-text-secondary md:flex-row">
+        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-center text-xs text-text-secondary md:flex-row md:text-left">
           <div>© 2026 Thalatha. All rights reserved.</div>
           <div className="flex items-center gap-1.5">
             <span>Powered by</span>

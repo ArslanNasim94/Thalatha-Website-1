@@ -250,7 +250,7 @@ function PhoneMockup() {
 
 function PhoneFrame({ imageUrl }: { imageUrl: string }) {
   return (
-    <div className="relative mx-auto h-[560px] w-[280px] rounded-[44px] border-[10px] border-[#1a1030] bg-[#1a1030] shadow-2xl sm:h-[620px] sm:w-[310px]">
+    <div className="relative mx-auto h-[480px] w-[240px] rounded-[40px] border-[8px] border-[#1a1030] bg-[#1a1030] shadow-2xl sm:h-[540px] sm:w-[270px] md:h-[580px] md:w-[290px] lg:h-[620px] lg:w-[310px]">
       <div className="absolute left-1/2 top-2 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-black/95" />
       <div className="absolute bottom-2 left-1/2 z-10 h-1 w-24 -translate-x-1/2 rounded-full bg-white/30" />
       <div className="relative h-full w-full overflow-hidden rounded-[34px]">
@@ -280,7 +280,7 @@ export default function HeroSection() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] w-full items-center overflow-hidden pt-28 md:pt-24"
+      className="relative isolate flex min-h-[100svh] w-full items-center overflow-hidden pt-24 sm:pt-28 lg:pt-24"
     >
       {/* WebGL layer */}
       <div className="absolute inset-0 -z-10">
@@ -301,7 +301,7 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 pb-24 md:grid-cols-2 md:gap-8 md:pb-20">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-24 sm:gap-12 lg:grid-cols-2 lg:gap-8 lg:pb-20">
         {/* LEFT */}
         <div className="relative z-10 flex flex-col gap-7">
           <motion.div
@@ -319,7 +319,7 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          <h1 className="font-display text-[clamp(2.6rem,6.4vw,5.4rem)] font-semibold leading-[1.02] tracking-[-0.02em]">
+          <h1 className="font-display text-[clamp(2.2rem,6.4vw,5.4rem)] font-semibold leading-[1.04] tracking-[-0.02em] [text-wrap:balance]">
             <span className="block text-white">
               <ScrambleText text="Premium Home" delay={300} />
             </span>
@@ -402,7 +402,7 @@ export default function HeroSection() {
         </div>
 
         {/* RIGHT */}
-        <div className="relative z-10 flex items-center justify-center md:justify-end">
+        <div className="relative z-10 flex items-center justify-center lg:justify-end">
           <PhoneMockup />
         </div>
       </div>
@@ -412,7 +412,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.4, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-text-secondary md:flex"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-text-secondary lg:flex"
       >
         <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
         <span className="relative inline-flex h-8 w-5 justify-center overflow-hidden rounded-full border border-white/15">

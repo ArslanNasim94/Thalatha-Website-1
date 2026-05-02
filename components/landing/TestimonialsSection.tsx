@@ -104,6 +104,7 @@ function Stars({ count, animateIn }: { count: number; animateIn: boolean }) {
 export default function TestimonialsSection() {
   const [active, setActive] = useState(0);
   const [enableWebGL, setEnableWebGL] = useState(false);
+  const [translateZ, setTranslateZ] = useState(420);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const inViewRef = useRef(false);
 
@@ -111,6 +112,16 @@ export default function TestimonialsSection() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
     setEnableWebGL(!reduced && !isMobile);
+
+    const computeZ = () => {
+      const w = window.innerWidth;
+      if (w < 1024) setTranslateZ(320);
+      else if (w < 1280) setTranslateZ(380);
+      else setTranslateZ(440);
+    };
+    computeZ();
+    window.addEventListener("resize", computeZ);
+    return () => window.removeEventListener("resize", computeZ);
   }, []);
 
   useEffect(() => {
@@ -178,7 +189,7 @@ export default function TestimonialsSection() {
 
         {/* Desktop carousel */}
         <div
-          className="relative mx-auto hidden h-[480px] max-w-5xl sm:block"
+          className="relative mx-auto hidden h-[440px] max-w-5xl md:block lg:h-[480px]"
           style={{ perspective: 1400 }}
         >
           <motion.div
@@ -195,7 +206,7 @@ export default function TestimonialsSection() {
                   key={t.name}
                   className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   style={{
-                    transform: `rotateY(${cardRotation}deg) translateZ(420px)`,
+                    transform: `rotateY(${cardRotation}deg) translateZ(${translateZ}px)`,
                     transformStyle: "preserve-3d",
                   }}
                 >
@@ -205,7 +216,7 @@ export default function TestimonialsSection() {
                       opacity: isActive ? 1 : 0.35,
                     }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className={`relative w-[380px] rounded-3xl border border-white/10 bg-[rgba(18,14,30,0.85)] p-8 backdrop-blur-md sm:w-[460px] ${
+                    className={`relative w-[min(86vw,360px)] rounded-3xl border border-white/10 bg-[rgba(18,14,30,0.85)] p-7 backdrop-blur-md md:w-[400px] md:p-8 lg:w-[460px] ${
                       isActive ? "shadow-[0_0_60px_rgba(139,92,246,0.25)]" : ""
                     }`}
                   >
@@ -238,7 +249,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Mobile swipe carousel */}
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <div
             className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4"
             data-lenis-prevent

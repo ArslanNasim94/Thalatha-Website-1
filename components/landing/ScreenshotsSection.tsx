@@ -57,24 +57,23 @@ export default function ScreenshotsSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const left = containerRef.current!.querySelector(".phone-left");
-      const center = containerRef.current!.querySelector(".phone-center");
-      const right = containerRef.current!.querySelector(".phone-right");
+      const lefts = containerRef.current!.querySelectorAll(".phone-left");
+      const centers = containerRef.current!.querySelectorAll(".phone-center");
+      const rights = containerRef.current!.querySelectorAll(".phone-right");
 
       gsap.fromTo(
-        left,
-        { x: -240, opacity: 0, rotateY: -25 },
+        lefts,
+        { x: -240, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          rotateY: -15,
           duration: 1.2,
           ease: "power3.out",
           scrollTrigger: { trigger: containerRef.current, start: "top 75%" },
         }
       );
       gsap.fromTo(
-        center,
+        centers,
         { y: 140, opacity: 0 },
         {
           y: 0,
@@ -86,12 +85,11 @@ export default function ScreenshotsSection() {
         }
       );
       gsap.fromTo(
-        right,
-        { x: 240, opacity: 0, rotateY: 25 },
+        rights,
+        { x: 240, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          rotateY: 15,
           duration: 1.2,
           delay: 0.05,
           ease: "power3.out",
@@ -147,17 +145,42 @@ export default function ScreenshotsSection() {
 
         <div
           ref={containerRef}
-          className="relative flex items-end justify-center gap-4 sm:gap-8"
+          className="relative flex items-end justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8"
           style={{ perspective: 1600 }}
         >
-          {/* Mobile: only center phone */}
+          {/* Mobile (<640): single phone */}
           <div className="block sm:hidden">
             <PhoneFrame src={SCREENSHOTS[0]} height={520} width={260} delay={0} />
           </div>
 
-          {/* Desktop: V-formation */}
+          {/* Tablet (640-1024): three phones, smaller */}
+          <div className="contents sm:flex sm:items-end sm:gap-3 lg:hidden">
+            <div
+              className="phone-left hidden sm:block"
+              style={{
+                transformStyle: "preserve-3d",
+                transform: "rotateY(-12deg) translateY(50px)",
+              }}
+            >
+              <PhoneFrame src={SCREENSHOTS[1]} height={420} width={200} delay={0} />
+            </div>
+            <div className="phone-center hidden sm:block">
+              <PhoneFrame src={SCREENSHOTS[0]} height={500} width={240} delay={0.5} />
+            </div>
+            <div
+              className="phone-right hidden sm:block"
+              style={{
+                transformStyle: "preserve-3d",
+                transform: "rotateY(12deg) translateY(50px)",
+              }}
+            >
+              <PhoneFrame src={SCREENSHOTS[2]} height={420} width={200} delay={1.0} />
+            </div>
+          </div>
+
+          {/* Desktop (>=1024): V-formation full size */}
           <div
-            className="phone-left hidden sm:block"
+            className="phone-left hidden lg:block"
             style={{
               transformStyle: "preserve-3d",
               transform: "rotateY(-15deg) translateY(60px)",
@@ -165,13 +188,11 @@ export default function ScreenshotsSection() {
           >
             <PhoneFrame src={SCREENSHOTS[1]} height={500} width={250} delay={0} />
           </div>
-
-          <div className="phone-center hidden sm:block">
+          <div className="phone-center hidden lg:block">
             <PhoneFrame src={SCREENSHOTS[0]} height={580} width={290} delay={0.5} />
           </div>
-
           <div
-            className="phone-right hidden sm:block"
+            className="phone-right hidden lg:block"
             style={{
               transformStyle: "preserve-3d",
               transform: "rotateY(15deg) translateY(60px)",

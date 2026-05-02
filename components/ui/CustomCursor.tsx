@@ -9,9 +9,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const noHover = window.matchMedia("(hover: none)").matches;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (reduced || noHover || isMobile) return;
+    const okPointer = window.matchMedia(
+      "(hover: hover) and (pointer: fine) and (min-width: 1024px)"
+    ).matches;
+    if (reduced || !okPointer) return;
     setEnabled(true);
 
     const dot = dotRef.current;

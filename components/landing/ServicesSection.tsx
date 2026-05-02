@@ -133,13 +133,18 @@ export default function ServicesSection() {
 
   useEffect(() => {
     const compute = () => {
-      const w = window.innerWidth;
+      const w = Math.min(window.innerWidth, document.documentElement.clientWidth);
+      // canvas should leave 24px breathing room on each side
+      const maxCanvas = Math.max(280, w - 48);
       if (w < 640) {
-        setSize({ inner: 110, outer: 200, canvas: 480 });
+        const canvas = Math.min(420, maxCanvas);
+        setSize({ inner: canvas * 0.24, outer: canvas * 0.42, canvas });
       } else if (w < 1024) {
-        setSize({ inner: 140, outer: 250, canvas: 620 });
+        const canvas = Math.min(560, maxCanvas);
+        setSize({ inner: canvas * 0.23, outer: canvas * 0.4, canvas });
       } else {
-        setSize({ inner: 180, outer: 320, canvas: 760 });
+        const canvas = Math.min(760, maxCanvas);
+        setSize({ inner: canvas * 0.24, outer: canvas * 0.42, canvas });
       }
     };
     compute();

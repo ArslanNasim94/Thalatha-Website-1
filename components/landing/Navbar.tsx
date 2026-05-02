@@ -26,6 +26,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
+
   const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -78,7 +88,7 @@ export default function Navbar() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 lg:flex">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.id}
@@ -97,7 +107,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden sm:block">
             <a
               href="#download"
               onClick={(e) => handleAnchor(e, "download")}
@@ -121,7 +131,8 @@ export default function Navbar() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 md:hidden"
+            aria-expanded={open}
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 outline-none focus-visible:ring-2 focus-visible:ring-[#A78BFA] lg:hidden"
           >
             <span
               className={`absolute h-px w-5 bg-white transition-transform ${
@@ -149,7 +160,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[99] flex flex-col items-center justify-center gap-6 bg-[#0A0812]/95 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-[99] flex flex-col items-center justify-center gap-6 bg-[#0A0812]/95 backdrop-blur-2xl lg:hidden"
           >
             {NAV_LINKS.map((l, i) => (
               <motion.a
